@@ -1,0 +1,19 @@
+model:
+  base_model: "Qwen/Qwen2.5-Coder-1.5B-Instruct"
+  load_in_4bit: true
+  lora_r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  target_modules: ["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj", "up_proj", "down_proj"]
+
+scheduler:
+  phased_burst: true
+  gpu_batch_size: 32
+  max_new_tokens: 384
+  eval_workers: 8
+  max_concurrency_workers: 4
+
+model_soup:
+  combination_type: "linear"
+  svd_full_matrices: false
+  svd_driver: "gesvda"
